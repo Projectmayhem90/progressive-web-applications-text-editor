@@ -1,7 +1,10 @@
+//Const webpack 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const path = require('path');
 const { InjectManifest } = require('workbox-webpack-plugin');
+
+// Models to sync to get on heroku
 
 module.exports = () => {
   const config = {
@@ -9,10 +12,6 @@ module.exports = () => {
     entry: {
       main: './src/js/index.js',
       install: './src/js/install.js',
-    },
-    output: {
-      filename: '[name].bundle.js',
-      path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
       new HtmlWebpackPlugin({
@@ -30,7 +29,7 @@ module.exports = () => {
         inject: true,
         name: 'Just Another Text Editor',
         short_name: 'J.A.T.E.',
-        description: 'Take notes with JavaScript syntax highlighting!',
+        description: 'Take notes with JS',
         background_color: '#225ca3',
         theme_color: '#225ca3',
         start_url: '/',
