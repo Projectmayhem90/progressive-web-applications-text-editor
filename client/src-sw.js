@@ -41,3 +41,30 @@ registerRoute(
     ],
   })
 );
+
+// Save the user input text to the cache
+self.addEventListener('submit', (event) => {
+  event.respondWith(
+    caches.open('user-input-cache')
+      .then((cache) => {
+        const formData = new FormData(event.target);
+        cache.put('/user-input', new Response(formData.get('user-input')));
+        return new Response('Text saved to cache');
+      })
+  );
+});
+
+// Retrieve the user input text from the cache
+self.addEventListener('fetch', (event) => {
+  if (event.request.url.endsWith('/user-input')) {
+    event.respondWith(
+      caches.open('user-input-cache')
+        .then((cache) => {
+          return cache.match('/user-input')
+            .then((response) => {
+              return response || new Response('');
+            });
+        })
+    );
+  }
+});
