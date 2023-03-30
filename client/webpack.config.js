@@ -10,7 +10,7 @@ const config = {
     install: './src/js/install.js',
   },
   output: {
-    filename: '[name].bundle.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
   },
@@ -37,7 +37,7 @@ const config = {
       icons: [
         {
           src: path.resolve('src/images/logo.png'),
-          sizes: [96, 128, 192, 256, 384, 512],
+          sizes: [96, 128, 192, 256, 384, 512], //Screen size for image
           destination: path.join('assets', 'icons'),
         },
       ],
